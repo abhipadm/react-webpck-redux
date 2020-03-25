@@ -41,5 +41,9 @@ module.exports = {
                 use: ["style-loader", "css-loader"]
             }
         ]
+    },
+    resolve: {
+        /** define file extension otherwise need import specific extensions */
+        extensions: [".js", ".jsx"]
     }
 };
