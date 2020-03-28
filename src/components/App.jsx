@@ -7,6 +7,7 @@ import Header from "./shared/Header";
 import PageNotFound from "./PageNotFound";
 
 import "./App.css";
+import CoursesPage from "./courses/CoursesPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/courses" component={CoursesPage} />
         <Route component={PageNotFound} />
       </Switch>
     </div>
