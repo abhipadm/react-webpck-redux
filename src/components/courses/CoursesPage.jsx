@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from "react";
 import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/createCourse";
@@ -23,9 +24,7 @@ class CoursesPage extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    debugger;
     this.props.actions.createCourse(this.state.course);
-
     console.log("saving ....");
   };
 
@@ -64,7 +63,6 @@ function mapStateToProps(state) {
   };
 }
 function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     actions: bindActionCreators(courseActions, dispatch)
   };

@@ -16,13 +16,10 @@
         "reselect": "4.0.0"
     },
     "scripts": {
-        "start": "webpack-dev-server --config webpack.config.dev.js --port 3000",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
+        "start": "run-p start:dev start:api",
+        "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 3000",
+        "prestart:api": "node tools/createMockDb.js",
+        "start:api": "node tools/apiServer.js"
     },
     "browserslist": {
         "production": [
@@ -76,5 +73,39 @@
         "presets": [
             "babel-preset-react-app"
         ]
+    },
+    "eslintConfig": {
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended",
+            "plugin:import/errors",
+            "plugin:import/warnings"
+        ],
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "ecmaVersion": 2018,
+            "sourceType": "module",
+            "ecmaFeatures": {
+                "jsx": true
+            }
+        },
+        "env": {
+            "browser": true,
+            "node": true,
+            "es6": true,
+            "jest": true
+        },
+        "rules": {
+            "no-debugger": "off",
+            "no-console": "off",
+            "no-unused-vars": "warn",
+            "react/prop-types": "warn"
+        },
+        "settings": {
+            "react": {
+                "version": "detect"
+            }
+        },
+        "root": true
     }
 }
