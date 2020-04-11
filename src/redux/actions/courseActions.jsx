@@ -1,4 +1,4 @@
-import * as types from "../actions/actionTypes";
+import * as types from "./actionTypes";
 import * as CourseApi from "../../api/courseApi";
 //import { courses } from "../../../tools/mockData";
 
@@ -11,12 +11,12 @@ export function loadCourseSuccess(courses) {
 }
 
 export function loadCourses() {
-  return function(dispatch) {
+  return function (dispatch) {
     return CourseApi.getCourses()
-      .then(courses => {
+      .then((courses) => {
         dispatch(loadCourseSuccess(courses));
       })
-      .catch(error => {
+      .catch((error) => {
         throw error;
       });
   };

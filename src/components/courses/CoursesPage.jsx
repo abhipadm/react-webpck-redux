@@ -5,6 +5,7 @@ import * as courseActions from "../../redux/actions/courseActions";
 
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import CourseList from "./CourseList";
 
 const styleColorRed = {
   color: "red"
@@ -21,11 +22,7 @@ class CoursesPage extends React.Component {
     return (
       <>
         <h2>Courses</h2>
-        {this.props.courses.map(course => (
-          <p style={styleColorRed} key={course.title}>
-            {course.title}
-          </p>
-        ))}
+        <CourseList courses={this.props.courses} />
       </>
     );
   }
