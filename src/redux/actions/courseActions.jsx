@@ -1,6 +1,5 @@
 import * as types from "./actionTypes";
 import * as CourseApi from "../../api/courseApi";
-//import { courses } from "../../../tools/mockData";
 
 export function createCourse(course) {
   return { type: types.CREATE_COURSE, course };
