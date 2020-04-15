@@ -13,6 +13,7 @@ function ManageCoursePage({
   loadCourses,
   loadAuthors,
   saveCourse,
+  history,
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.course });
@@ -23,6 +24,9 @@ function ManageCoursePage({
       loadCourses().catch((error) => {
         alert("error " + error);
       });
+    } else {
+      // if the couses are lazy loading as async we set the course state once the courses are available. Which will trigger the use effect
+      setCourse({ ...props.course });
     }
 
     if (authors.length === 0) {
@@ -42,7 +46,9 @@ function ManageCoursePage({
 
   function handleSave(event) {
     event.preventDefault();
-    saveCourse(course);
+    saveCourse(course).then(() => {
+      history.push("/courses");
+    });
   }
 
   return (
@@ -63,11 +69,27 @@ ManageCoursePage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   saveCourse: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+export function getCourseBySlug(courses, slug) {
+  debugger;
+  alert(courses.find((course) => course && course.slug === slug));
+  console.log(JSON.stringify(courses));
+  return courses.find((course) => course && course.slug === slug) || null;
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  console.log(`new course : ${JSON.stringify(newCourse)}`);
+  debugger;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
+
   return {
-    course: newCourse,
+    course,
     courses: state.courses,
     authors: state.authors,
   };
