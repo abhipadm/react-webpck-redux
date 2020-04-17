@@ -73,8 +73,6 @@ ManageCoursePage.propTypes = {
 };
 
 export function getCourseBySlug(courses, slug) {
-  debugger;
-  alert(courses.find((course) => course && course.slug === slug));
   console.log(JSON.stringify(courses));
   return courses.find((course) => course && course.slug === slug) || null;
 }
@@ -82,7 +80,6 @@ export function getCourseBySlug(courses, slug) {
 function mapStateToProps(state, ownProps) {
   const slug = ownProps.match.params.slug;
   console.log(`new course : ${JSON.stringify(newCourse)}`);
-  debugger;
   const course =
     slug && state.courses.length > 0
       ? getCourseBySlug(state.courses, slug)
